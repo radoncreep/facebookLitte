@@ -15,7 +15,15 @@ export const postRouter = tRouter({
 
             throw new Error("Invalid input: Param ID")
         })
+        .output((value): string => {
+            if (typeof value === 'string') {
+              return value;
+            }
+            throw new Error('Output is not a string');
+        })
         .query(({ input }) => {
             // do stuff
+            console.log(input)
+            return ""
         })
 })
