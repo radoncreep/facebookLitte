@@ -1,14 +1,15 @@
-import { publicProcedure, tRouter } from "../trpc";
+import { userProcedure } from "../middlewares/authentication";
+import { tRouter } from "../trpc";
 import { getPostValidation } from "../utils/validations";
 
 
 export const userRouter = tRouter({
-    getUser: publicProcedure
+    getUser: userProcedure
         .input(getPostValidation)
         .query(({ input }) => {
             return "";
         }),
-    updateUser: publicProcedure
+    updateUser: userProcedure
         .input((param: unknown) => {
             if (typeof param === "string") return param;
 

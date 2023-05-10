@@ -1,6 +1,13 @@
 import { initTRPC } from "@trpc/server";
+import { User } from "./models/User";
+import { Post } from "./models/Post";
 
-const tInstance = initTRPC.create();
+interface AppContext {
+    user?: User;
+    post?: Post;
+}
+
+const tInstance = initTRPC.context<AppContext>().create();
 
 export const tRouter = tInstance.router;
 export const publicProcedure = tInstance.procedure;

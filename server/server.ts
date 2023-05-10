@@ -11,7 +11,7 @@ dotenv.config();
 const tAppRouter = useMergeRouters(
     postRouter,
     userRouter
-)
+);
 
 export type AppRouter = typeof tAppRouter;
 
