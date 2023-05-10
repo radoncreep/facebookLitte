@@ -5,3 +5,4 @@ const tInstance = initTRPC.create();
 export const tRouter = tInstance.router;
 export const publicProcedure = tInstance.procedure;
 export const tMiddleware = tInstance.middleware; 
+export const useMergeRouters = tInstance.mergeRouters;
