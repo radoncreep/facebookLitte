@@ -1,6 +1,6 @@
-import { userProcedure } from "../middlewares/authentication";
 import { tRouter } from "../trpc";
 import { getPostValidation } from "../utils/validations";
+import { userProcedure } from "../middlewares/authentication";
 
 
 export const userRouter = tRouter({

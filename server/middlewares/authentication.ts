@@ -10,6 +10,7 @@ const isAuthenticated = tMiddleware(async (options) => {
         throw new TRPCError({ code: "UNAUTHORIZED" });
     }
 
+    // context extension
     return options.next({
         ctx: {
             user: ctx.user
