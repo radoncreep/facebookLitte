@@ -1,11 +1,10 @@
-import { Box } from "@chakra-ui/layout";
+// import { Box } from "@chakra-ui/layout";
+import Navbar from "./ui/shared/Navbar/Navbar";
 
 function App() {
 
   return (
-    <Box>
-      
-    </Box>
+    <Navbar />
   )
 }
 
