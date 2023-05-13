@@ -1,15 +1,12 @@
 import { Fragment, useEffect, useState } from "react";
-import { Box, Container, Flex, HStack, Text } from "@chakra-ui/layout";
+import { Container, Flex, HStack, Text } from "@chakra-ui/layout";
 import { Input  } from "@chakra-ui/input";
 import { Image  } from "@chakra-ui/image";
 
-import { BsFacebook, BsSearch, BsPeopleFill } from "react-icons/bs";
-import { AiFillHome } from "react-icons/ai";
-import { MdLiveTv } from "react-icons/md";
-import { GrGroup } from "react-icons/gr";
+import { BsFacebook, BsSearch } from "react-icons/bs";
+
 
 import { results } from "../../../lib/searchResults";
-import { IconProps } from "@chakra-ui/react";
 import NavigationRoutes from "./NavRoutes";
 import NavbarOptions from "./NavbarOptions";
 
@@ -23,10 +20,9 @@ type People = {
 export default function Navbar() {
     const [searchValue, setSearchValue] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [searchCache, setSearchCache] = useState<Record<typeof searchValue, People[]>>({"aaron": results }); 
+    const [searchCache] = useState<Record<typeof searchValue, People[]>>({"aaron": results }); 
     const [allResults, setAllResults] = useState<typeof results | null>(null);
 
-    let currentResult: number = allResults ? allResults.length - 1 : -1;
 
     useEffect(() => {
         let searchQueryTimer = setTimeout(() => {
