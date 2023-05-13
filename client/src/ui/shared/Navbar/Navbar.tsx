@@ -1,7 +1,8 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { Container, Flex, HStack, Text } from "@chakra-ui/layout";
 import { Input  } from "@chakra-ui/input";
 import { Image  } from "@chakra-ui/image";
+import { Menu, MenuList, MenuItem } from "@chakra-ui/menu";
 
 import { BsFacebook, BsSearch } from "react-icons/bs";
 
@@ -9,6 +10,7 @@ import { BsFacebook, BsSearch } from "react-icons/bs";
 import { results } from "../../../lib/searchResults";
 import NavigationRoutes from "./NavRoutes";
 import NavbarOptions from "./NavbarOptions";
+import { Avatar, Box, MenuButton, Portal } from "@chakra-ui/react";
 
 type People = {
     id: string;
@@ -22,12 +24,12 @@ export default function Navbar() {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [searchCache] = useState<Record<typeof searchValue, People[]>>({"aaron": results }); 
     const [allResults, setAllResults] = useState<typeof results | null>(null);
-
+    const ref = useRef(null);
 
     useEffect(() => {
         let searchQueryTimer = setTimeout(() => {
             handleSearch(searchValue.trim());
-        }, 1000);
+        }, 500);
         
         return () => { clearTimeout(searchQueryTimer) };
     }, [searchValue]);
@@ -59,7 +61,7 @@ export default function Navbar() {
             avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjb-Jsep9tAcYMGcwnDZl9MuXwtJ87LMh-KkFZT04M9XQRs6I0mWi4GJcUD7bTPEOAXRU&usqp=CAU"
         }
 
-        setAllResults([response]);
+        setAllResults([...results]);
         setIsLoading(false);
     }
 
@@ -68,53 +70,95 @@ export default function Navbar() {
     if (isLoading) {
         feedback = <Text color={"#fff"}>Loading...</Text>
     } else if(!isLoading && allResults) {
-        feedback = <SearchFeedback results={allResults}  />
+        // feedback = <SearchFeedback results={allResults}  />
     } else {
         feedback = null;
     }
     
     return (
-        <Flex 
-            bgColor="#242526"
-            paddingY={2}
-            paddingLeft={4}
-            paddingRight={20}
-            justifyContent="space-between"
-        >
-            <HStack spacing={2}>
-                <BsFacebook size="40px" color="#3b5998" />
+        <Box>
 
-                <HStack
-                    bgColor="#3A3B3C"
-                    height="40px"
-                    borderRadius="20px"
-                    spacing={2}
-                    alignItems="center"
-                    paddingX={2}
-                >
-                    <BsSearch color="#AEB1B5" />
+            <Flex 
+                bgColor="#242526"
+                paddingLeft={20}
+                paddingRight={20}
+                justifyContent="space-between"
+                height="60px"
+            >
+                <HStack spacing={8} >
+                    <BsFacebook size="40px" color="#3b5998" />
 
-                    <Input 
-                        type="text"
-                        value={searchValue}  
-                        placeholder="search facebook"
-                        color="#fff"
-                        onChange={handleChange}
-                        bg="none"
-                        _focus={{
-                            outline: "none"
-                        }}
-                        border="none"
-                    />
+                    <HStack
+                        bgColor="#3A3B3C"
+                        height="40px"
+                        borderRadius="20px"
+                        spacing={2}
+                        alignItems="center"
+                        paddingX={4}
+                        ref={ref}
+                        position="relative"
+                    >
+                        <BsSearch color="#AEB1B5" />
+
+                        <Input 
+                            type="text"
+                            value={searchValue}  
+                            placeholder="search facebook"
+                            color="#fff"
+                            onChange={handleChange}
+                            bg="none"
+                            _focus={{
+                                outline: "none"
+                            }}
+                            fontSize="14px"
+                            border="none"
+
+                        />
+
+
+                        {allResults !== null && 
+                            <Container
+                                position="absolute"
+                                top={12}
+                                left={-2}
+                                bgColor="#242526"
+                                minWidth="sm"
+                                borderRadius="4px"
+                                paddingX={4}
+                                paddingY={4}
+                            >
+                                {allResults?.map((res) => (
+                                    <Fragment key={res.id}>
+                                        <Flex justify="space-between" alignItems="center" mb={4}>
+                                            <HStack spacing={4}>
+                                                <BsSearch size="16px" color="#AEB1B5" />
+                                                <Text color={"#fff"} key={res.id}>{res.firstname} {res.lastname}</Text>
+                                            </HStack>
+
+                                            <Image 
+                                                src={res.avatar} 
+                                                alt={`An image of ${res.firstname} ${res.lastname}`}
+                                                boxSize={10}
+                                                borderRadius="50%"
+                                            />
+                                            {/* <Avatar size="3xs" src={res.avatar} name={res.firstname + " " + res.lastname} /> */}
+                                        </Flex>
+                                    </Fragment>
+                                ))}
+                            </Container>
+                        }
+                    </HStack>
+
                 </HStack>
-            </HStack>
+                        
 
-            <NavigationRoutes />
+                <NavigationRoutes />
 
-            <NavbarOptions />
+                <NavbarOptions />
 
-            {/* {feedback} */}
-        </Flex>
+                {/* {feedback} */}
+            </Flex>
+        </Box>
     )
 }
 
@@ -122,34 +166,23 @@ interface SearchFeedbackProps {
     results: People[] | null;
 }
 
-function SearchFeedback({results}: SearchFeedbackProps) {
+// function SearchFeedback({results}: SearchFeedbackProps) {
 
-    if (results === null || results.length === 0) {
-        return (
-            <Text color={"#fff"}>No results...</Text>
-        )
-    }
+//     if (results === null || results.length === 0) {
+//         return (
+//             <Text color={"#fff"}>No results...</Text>
+//         )
+//     }
 
-    return (
-        <Container maxW="lg">
-            {results.map((res) => (
-                <Fragment key={res.id}>
-                    <Flex justify="space-between" alignItems="center" height={20} mb={4}>
-                        <Text color={"#fff"} key={res.id}>{res.firstname} {res.lastname}</Text>
-
-                        <Image 
-                            src={res.avatar} 
-                            alt={`An image of ${res.firstname} ${res.lastname}`}
-                            boxSize={20}
-                            borderRadius="50%"
-                        />
-                        {/* <Avatar size="3xs" src={res.avatar} name={res.firstname + " " + res.lastname} /> */}
-                    </Flex>
-                </Fragment>
-            ))}
-        </Container>
-    )
-}
+//     return (
+//         <Fragment key={res.id}>
+//             <Flex justify="space-between" alignItems="center" height={20} mb={4}>
+                
+//                 {/* <Avatar size="3xs" src={res.avatar} name={res.firstname + " " + res.lastname} /> */}
+//             </Flex>
+//         </Fragment>
+//     )
+// }
 
 
 
