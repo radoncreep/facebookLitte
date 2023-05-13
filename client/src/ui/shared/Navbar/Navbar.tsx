@@ -1,10 +1,17 @@
 import { Fragment, useEffect, useState } from "react";
 import { Box, Container, Flex, HStack, Text } from "@chakra-ui/layout";
-import { Input } from "@chakra-ui/input";
+import { Input  } from "@chakra-ui/input";
 import { Image  } from "@chakra-ui/image";
 
-import { AppLogo } from "../Icons";
+import { BsFacebook, BsSearch, BsPeopleFill } from "react-icons/bs";
+import { AiFillHome } from "react-icons/ai";
+import { MdLiveTv } from "react-icons/md";
+import { GrGroup } from "react-icons/gr";
+
 import { results } from "../../../lib/searchResults";
+import { IconProps } from "@chakra-ui/react";
+import NavigationRoutes from "./NavRoutes";
+import NavbarOptions from "./NavbarOptions";
 
 type People = {
     id: string;
@@ -17,7 +24,7 @@ export default function Navbar() {
     const [searchValue, setSearchValue] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [searchCache, setSearchCache] = useState<Record<typeof searchValue, People[]>>({"aaron": results }); 
-    const [allResults, setAllResults] = useState<typeof results | null>(results);
+    const [allResults, setAllResults] = useState<typeof results | null>(null);
 
     let currentResult: number = allResults ? allResults.length - 1 : -1;
 
@@ -60,31 +67,58 @@ export default function Navbar() {
         setIsLoading(false);
     }
 
-    let feedback: JSX.Element = <></>;
+    let feedback: JSX.Element | null = <></>;
 
     if (isLoading) {
         feedback = <Text color={"#fff"}>Loading...</Text>
     } else if(!isLoading && allResults) {
         feedback = <SearchFeedback results={allResults}  />
     } else {
-        feedback = <Text color={"#fff"}>No results...</Text>
+        feedback = null;
     }
     
     return (
-        <Container >
-            <HStack >
-                <AppLogo />
+        <Flex 
+            bgColor="#242526"
+            paddingY={2}
+            paddingLeft={4}
+            paddingRight={20}
+            justifyContent="space-between"
+        >
+            <HStack spacing={2}>
+                <BsFacebook size="40px" color="#3b5998" />
 
-                <Box>
+                <HStack
+                    bgColor="#3A3B3C"
+                    height="40px"
+                    borderRadius="20px"
+                    spacing={2}
+                    alignItems="center"
+                    paddingX={2}
+                >
+                    <BsSearch color="#AEB1B5" />
+
                     <Input 
+                        type="text"
                         value={searchValue}  
+                        placeholder="search facebook"
+                        color="#fff"
                         onChange={handleChange}
+                        bg="none"
+                        _focus={{
+                            outline: "none"
+                        }}
+                        border="none"
                     />
-                </Box>
+                </HStack>
             </HStack>
 
-            {feedback}
-        </Container>
+            <NavigationRoutes />
+
+            <NavbarOptions />
+
+            {/* {feedback} */}
+        </Flex>
     )
 }
 
@@ -120,6 +154,9 @@ function SearchFeedback({results}: SearchFeedbackProps) {
         </Container>
     )
 }
+
+
+
 
 /**
  * MENTAL MODEL
