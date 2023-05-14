@@ -1,16 +1,14 @@
 import { Fragment, useEffect, useRef, useState } from "react";
-import { Container, Flex, HStack, Text } from "@chakra-ui/layout";
-import { Input  } from "@chakra-ui/input";
-import { Image  } from "@chakra-ui/image";
-import { Menu, MenuList, MenuItem } from "@chakra-ui/menu";
+import { Box, Container, Flex, HStack, Text } from "@chakra-ui/layout";
+import { Input } from "@chakra-ui/input";
+import { Image } from "@chakra-ui/image";
 
 import { BsFacebook, BsSearch } from "react-icons/bs";
 
 
 import { results } from "../../../lib/searchResults";
-import NavigationRoutes from "./NavRoutes";
-import NavbarOptions from "./NavbarOptions";
-import { Avatar, Box, MenuButton, Portal } from "@chakra-ui/react";
+import NavigationRoutes from "./navRoutes";
+import NavbarOptions from "./navbarOptions";
 
 type People = {
     id: string;
@@ -80,12 +78,12 @@ export default function Navbar() {
 
             <Flex 
                 bgColor="#242526"
-                paddingLeft={20}
+                paddingLeft={4}
                 paddingRight={20}
                 justifyContent="space-between"
                 height="60px"
             >
-                <HStack spacing={8} >
+                <HStack spacing={2} >
                     <BsFacebook size="40px" color="#3b5998" />
 
                     <HStack
@@ -112,7 +110,7 @@ export default function Navbar() {
                             }}
                             fontSize="14px"
                             border="none"
-
+                            // width="240px"
                         />
 
 
