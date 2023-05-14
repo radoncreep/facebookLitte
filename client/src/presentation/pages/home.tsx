@@ -6,7 +6,7 @@ export default function Home() {
 
 
     return (
-        <Box minH="100vh" bgColor="primary">
+        <Box height="100vmin" bgColor="primaryBg">
             <NavigationBar />
 
             <SideBar />
