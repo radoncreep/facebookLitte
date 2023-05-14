@@ -3,7 +3,7 @@ import { PropsWithChildren } from "react";
 import { BsFillGrid3X3GapFill, BsMessenger } from "react-icons/bs";
 import { TbBellRinging2Filled } from "react-icons/tb";
 
-import ProfileAvatar from "../Avatar";
+import ProfileAvatar from "../atoms/avatar";
 
 
 type NavOption = "Grid" | "Messenger" | "Notifications" | "Profile";
