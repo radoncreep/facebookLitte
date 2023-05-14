@@ -10,7 +10,7 @@ import { Box } from "@chakra-ui/react";
 type NavRoute = "Home" | "Friends" | "Live" | "Community";
 
 const activeColor: string = "#2A76DC";
-const inactiveColor: string = "#AFB2B7";
+const inactiveColor: string = "#FFFFFF";
 
 
 export default function NavigationRoutes() {

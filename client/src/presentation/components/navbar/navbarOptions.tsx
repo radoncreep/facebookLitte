@@ -10,7 +10,7 @@ type NavOption = "Grid" | "Messenger" | "Notifications" | "Profile";
 
 const iconStyle = {
     size: "22px",
-    color: "#fff",
+    color: "appWhite",
 }
 
 export default function NavbarOptions() {
