@@ -7,7 +7,8 @@ export const userRouter = tRouter({
     getUser: userProcedure
         .input(getPostValidation)
         .query(({ input }) => {
-            return "";
+            console.log(input);
+            return "hello, Victor";
         }),
     updateUser: userProcedure
         .input((param: unknown) => {
