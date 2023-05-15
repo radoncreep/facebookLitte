@@ -4,7 +4,7 @@ import { Image } from "@chakra-ui/image";
 import { FaChevronDown, FaChevronRight, FaHistory, FaStoreAlt, FaUserFriends } from "react-icons/fa";
 import { HiUserGroup } from "react-icons/hi";
 import { MdOutlineSmartDisplay } from "react-icons/md";
-import { Button, Center, Divider } from "@chakra-ui/react";
+import { Button, Center } from "@chakra-ui/react";
 
 
 type SideBarRouteType = "Find Friends" | "Groups" | "Most Recent" | "Marketplace" | "Watch";
