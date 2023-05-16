@@ -27,7 +27,7 @@ export default function Post() {
     return (
         <Container 
             minWidth="lg"
-            maxWidth="xl"
+            maxWidth="lg"
             bgColor="primaryBg"
             borderWidth="1px"
             borderColor="rgba(255, 255, 255, 0.05)"
@@ -44,14 +44,14 @@ export default function Post() {
                     height={14}
                 />
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} style={{ flex: 1 }}>
                     <Input 
                         placeholder={`What's on your mind, ${user.firstname} ${user.lastname}?`}
                         onChange={handlePostInput}
                         bgColor="rgba(255, 255, 255, 0.05)"
                         border="none"
                         borderRadius="30px"
-                        flex={1}
+                        width="100%"
                         py={3}
                         px={4}
                         _focus={{

@@ -32,8 +32,8 @@ export default function ProfileAvatar({src, width, height, firstname, lastname, 
     return (
         <Image 
             src={src}
-            width={width || "150px"}
-            height={height || "150px"}
+            width={width || "60px"}
+            height={height || "60px"}
             {...rest}
             onError={handleImageLoadError}
             borderRadius="50%"
@@ -43,16 +43,18 @@ export default function ProfileAvatar({src, width, height, firstname, lastname, 
 
 
 function ProfileInitials({firstname, lastname, width, height}: Props) {
+    const fnInitial = firstname.length > 0 ? firstname[0] : "";
+    const lnInitial = lastname.length > 0 ? lastname[0] : "";
 
     return (
         <Center 
             bgColor={"lightgreen"}
-            width={width || "150px"}
-            height={height || "150px"}
+            width={width || "60px"}
+            height={height || "60px"}
             borderRadius="50%"
         >
-            <Text color="#000" fontSize={"18px"} fontWeight="bold">
-                {firstname[0].toUpperCase() + lastname[0].toUpperCase()}
+            <Text color="#000" fontSize="20px" fontWeight="bold">
+                {(fnInitial + lnInitial).toUpperCase()}
             </Text>
         </Center>
     )
