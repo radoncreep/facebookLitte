@@ -1,5 +1,7 @@
-import { Box } from "@chakra-ui/layout";
+import { Box, Container, Flex } from "@chakra-ui/layout";
+
 import { NavigationBar, SideBar } from "../components";
+import Post from "../containers/post/post";
 
 
 export default function Home() {
@@ -9,9 +11,18 @@ export default function Home() {
         <Box height="100vmin" bgColor="primaryBg">
             <NavigationBar />
 
-            <SideBar />
-        </Box>
-        
+            <Flex>
+                <SideBar />
 
+                <Container py={10} flex={2} display="flex" justifyContent="center">
+                    <Post />
+
+                </Container>
+            </Flex>
+
+            <Container flex={1}>
+
+            </Container>
+        </Box>
     )
 }

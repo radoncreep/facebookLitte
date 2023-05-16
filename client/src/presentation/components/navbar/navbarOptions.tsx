@@ -1,9 +1,10 @@
 import { Box, HStack } from "@chakra-ui/react";
-import { PropsWithChildren } from "react";
+import { Fragment, PropsWithChildren } from "react";
 import { BsFillGrid3X3GapFill, BsMessenger } from "react-icons/bs";
 import { TbBellRinging2Filled } from "react-icons/tb";
 
-import ProfileAvatar from "../atoms/avatar";
+import ProfileAvatar from "../profile/avatar";
+import { user as data } from "../../../lib/user";
 
 
 type NavOption = "Grid" | "Messenger" | "Notifications" | "Profile";
@@ -14,7 +15,9 @@ const iconStyle = {
 }
 
 export default function NavbarOptions() {
-    const navOptions: Array<NavOption> = ["Grid", "Messenger", "Notifications", "Profile"]
+    console.log("OPTIONS")
+    const navOptions: Array<NavOption> = ["Grid", "Messenger", "Notifications", "Profile"];
+    const user = data;
 
     function handleNavOption(option: NavOption) {
         console.log({option})
@@ -54,13 +57,16 @@ export default function NavbarOptions() {
                         )
                     case "Profile": 
                         return (
-                            <OptionBackground key={option}>
+                            <Fragment key={option}>
                                 <ProfileAvatar
-                                    src=""
-                                    size="xs"
-                                    onClick={() => handleNavOption(option)} 
+                                    src={user.avatar}
+                                    width="50px"
+                                    height="50px"
+                                    firstname={user.firstname}
+                                    lastname={user.lastname}
+                                    // onClick={() => handleNavOption(option)} 
                                 />
-                            </OptionBackground>
+                            </Fragment>
                         )
                     default: 
                         return null;

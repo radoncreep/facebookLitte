@@ -11,7 +11,7 @@ interface Props extends ImageProps {
 export default function ProfileAvatar({src, width, height, firstname, lastname, ...rest}: Props) {
     const [loadInitials, setLoadInitials] = useState<boolean>(false);
 
-    if (!src || src?.length || loadInitials) {
+    if (!src || src?.length < 0 || loadInitials) {
         return (
             <ProfileInitials 
                 width={width} 
@@ -22,13 +22,21 @@ export default function ProfileAvatar({src, width, height, firstname, lastname, 
         )
     }
 
+    function handleImageLoadError(e: React.SyntheticEvent<HTMLImageElement, Event>) {
+        // if the image load is broken // request for another // check for image load failsafe
+        if (e.type === "error") {
+            setLoadInitials(true);
+        }
+    }
+
     return (
         <Image 
             src={src}
             width={width || "150px"}
             height={height || "150px"}
             {...rest}
-            onError={() => setLoadInitials(true)}
+            onError={handleImageLoadError}
+            borderRadius="50%"
         />
     )
 }
@@ -38,12 +46,13 @@ function ProfileInitials({firstname, lastname, width, height}: Props) {
 
     return (
         <Center 
-            bgColor={"green"}
+            bgColor={"lightgreen"}
             width={width || "150px"}
             height={height || "150px"}
+            borderRadius="50%"
         >
-            <Text color="#000" fontSize="30">
-                {firstname[0].toUpperCase() + " " + lastname[0].toUpperCase()}
+            <Text color="#000" fontSize={"18px"} fontWeight="bold">
+                {firstname[0].toUpperCase() + lastname[0].toUpperCase()}
             </Text>
         </Center>
     )
