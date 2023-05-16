@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import { Box, Container, Flex, HStack, Text } from "@chakra-ui/layout";
+import { Container, Flex, HStack, Text } from "@chakra-ui/layout";
 import { Input } from "@chakra-ui/input";
 import { FaVideo } from "react-icons/fa";
 import { MdInsertPhoto } from "react-icons/md";
@@ -16,13 +16,13 @@ const iconStyle = {
 }
 
 export default function Post() {
-    // const [postInputValue, setPostInputValue] = useState()
-    console.log("POST")
     const user = data;
 
     function handlePostInput(event: ChangeEvent<HTMLInputElement>) {
         console.log("value ", event.target.value);
     }
+
+    function handleSubmit() {};
 
     return (
         <Container 
@@ -44,19 +44,21 @@ export default function Post() {
                     height={14}
                 />
 
-                <Input 
-                    placeholder={`What's on your mind, ${user.firstname} ${user.lastname}?`}
-                    onChange={handlePostInput}
-                    bgColor="rgba(255, 255, 255, 0.05)"
-                    border="none"
-                    borderRadius="30px"
-                    flex={1}
-                    py={3}
-                    px={4}
-                    _focus={{
-                        outline: "none"
-                    }}
-                />
+                <form onSubmit={handleSubmit}>
+                    <Input 
+                        placeholder={`What's on your mind, ${user.firstname} ${user.lastname}?`}
+                        onChange={handlePostInput}
+                        bgColor="rgba(255, 255, 255, 0.05)"
+                        border="none"
+                        borderRadius="30px"
+                        flex={1}
+                        py={3}
+                        px={4}
+                        _focus={{
+                            outline: "none"
+                        }}
+                    />
+                </form>
             </HStack>
 
             <Flex justifyContent="space-evenly" p={4} bgColor="rgba(255, 255, 255, 0.03)">
