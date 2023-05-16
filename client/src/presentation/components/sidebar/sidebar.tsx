@@ -43,7 +43,7 @@ export default function SideBar() {
     )
 
     return (
-        <Container py={2} height="100%" maxWidth={340} style={{ backgroundColor: "rgba(255, 255, 255, 0.03)", borderColor: "rgba(255, 255, 255, 0.1)", borderRightWidth: 1 }}>
+        <Container position="sticky" overflow="auto" flex={1} py={2} height="100vh" maxWidth={340} style={{ backgroundColor: "rgba(255, 255, 255, 0.03)", borderColor: "rgba(255, 255, 255, 0.1)", borderRightWidth: 1 }}>
              <HStack spacing={4} mb={8} px={6}>
                 <Image 
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMzs6xD2nRWRDC8038e189eaP2LMv_MHUuc-sTuBfAlAhkbsXQA6ditbsfqQ0D5N0Zm5U&usqp=CAU"
