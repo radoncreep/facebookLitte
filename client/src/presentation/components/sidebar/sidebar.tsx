@@ -76,7 +76,7 @@ export default function SideBar() {
 
                 <VStack spacing={6} align="flex-start" mt={6} >
                     {userShortcuts.map(shortcut => (
-                        <Text color="appWhite" fontWeight="md" fontSize={14}>
+                        <Text key={shortcut} color="appWhite" fontWeight="md" fontSize={14}>
                             {shortcut}
                         </Text>
                     ))}

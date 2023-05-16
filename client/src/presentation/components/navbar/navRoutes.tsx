@@ -33,7 +33,7 @@ export default function NavigationRoutes() {
                 switch (route ) {
                     case "Home": 
                         return (
-                            <IconWrapper isActive={route === activeRoute}>
+                            <IconWrapper key={route} isActive={route === activeRoute}>
                                 <AiFillHome
                                     cursor="pointer"
                                     {...iconStyle}
@@ -44,7 +44,7 @@ export default function NavigationRoutes() {
                         )
                     case "Friends": 
                         return (
-                            <IconWrapper isActive={route === activeRoute}>
+                            <IconWrapper key={route} isActive={route === activeRoute}>
                                 <BsPeopleFill
                                     cursor="pointer"
                                     {...iconStyle}
@@ -55,7 +55,7 @@ export default function NavigationRoutes() {
                         )
                     case "Live": 
                         return (
-                            <IconWrapper isActive={route === activeRoute}>
+                            <IconWrapper key={route} isActive={route === activeRoute}>
                                 <MdLiveTv
                                     cursor="pointer"
                                     {...iconStyle}
@@ -66,7 +66,7 @@ export default function NavigationRoutes() {
                         )
                     case "Community": 
                         return (
-                            <IconWrapper isActive={route === activeRoute}>
+                            <IconWrapper key={route} isActive={route === activeRoute}>
                                 <HiUserGroup
                                     cursor="pointer"
                                     {...iconStyle}
@@ -76,8 +76,6 @@ export default function NavigationRoutes() {
                             </IconWrapper>
                         )
                 }
-                
-              
             })}
         </HStack>
     )
