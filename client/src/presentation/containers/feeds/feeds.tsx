@@ -36,7 +36,7 @@ function Feed(props: FeedProps) {
         <Container 
             minWidth="md"
             maxWidth="lg"
-            mt={10}
+            mt={4}
             borderWidth={1}
             borderColor="rgba(255, 255, 255, 0.04)"
             borderRadius="8px"
