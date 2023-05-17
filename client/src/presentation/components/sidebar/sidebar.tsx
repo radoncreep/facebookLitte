@@ -44,14 +44,14 @@ export default function SideBar() {
 
     return (
         <Container 
-        position="fixed"
-        float={"left"}
+        position="sticky"
+        // float={"left"}
             // overflow="auto"
             top={0}
             flex={1} 
             py={2} 
             height="100vh" 
-            maxWidth={340} 
+            // maxWidth={340} 
             bgColor="rgba(255, 255, 255, 0.03)"
             borderColor="rgba(255, 255, 255, 0.1)"
             borderRightWidth={1}
