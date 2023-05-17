@@ -9,10 +9,10 @@ export default function Home() {
 
 
     return (
-        <Box bgColor="primaryBg" >
+        <Box bgColor="primaryBg" boxSizing="border-box">
             <NavigationBar />
 
-            <Flex>
+            <Flex position="relative">
                 <SideBar />
 
                 <Box 
